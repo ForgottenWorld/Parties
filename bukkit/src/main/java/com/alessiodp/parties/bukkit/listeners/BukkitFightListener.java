@@ -41,6 +41,10 @@ public class BukkitFightListener implements Listener {
 	
 	@EventHandler (ignoreCancelled = true)
 	public void onPlayerHit(EntityDamageByEntityEvent event) {
+		if(BukkitConfigParties.FRIENDLY_FIRE_WORLDS.contains(event.getEntity().getLocation().getWorld().getName())) {
+			event.setCancelled(true);
+			return;
+		}
 		if (BukkitConfigParties.FRIENDLYFIRE_ENABLE && event.getEntity() instanceof Player) {
 			Player victim = (Player) event.getEntity();
 			Player attacker = null;

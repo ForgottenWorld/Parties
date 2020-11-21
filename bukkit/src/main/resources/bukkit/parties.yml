@@ -155,6 +155,8 @@ additional:
       party: "default"
 
   friendly-fire:
+    always-on-friendly-fire-worlds:
+      - world
     # Prevent fights between players of a party
     enable: true
     # You can choose how to handle friendly fire

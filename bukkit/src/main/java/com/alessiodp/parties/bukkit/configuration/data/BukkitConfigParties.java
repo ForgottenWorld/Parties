@@ -6,6 +6,8 @@ import com.alessiodp.parties.common.configuration.PartiesConstants;
 import com.alessiodp.parties.common.configuration.data.ConfigParties;
 import lombok.Getter;
 
+import java.util.List;
+
 public class BukkitConfigParties extends ConfigParties {
 	@Getter private final String fileName = "parties.yml";
 	@Getter private final String resourceName = "bukkit/parties.yml";
@@ -27,7 +29,8 @@ public class BukkitConfigParties extends ConfigParties {
 	public static boolean		KILLS_MOB_NEUTRAL;
 	public static boolean		KILLS_MOB_HOSTILE;
 	public static boolean		KILLS_MOB_PLAYERS;
-	
+
+	public static List<String>	FRIENDLY_FIRE_WORLDS;
 	
 	public BukkitConfigParties(PartiesPlugin plugin) {
 		super(plugin);
@@ -61,6 +64,7 @@ public class BukkitConfigParties extends ConfigParties {
 		
 		// Bukkit configuration
 		// Additional settings
+		FRIENDLY_FIRE_WORLDS = confAdapter.getStringList("always-on-friendly-fire-worlds", FRIENDLY_FIRE_WORLDS);
 		FRIENDLYFIRE_ENABLE = confAdapter.getBoolean("additional.friendly-fire.enable", FRIENDLYFIRE_ENABLE);
 		FRIENDLYFIRE_TYPE = confAdapter.getString("additional.friendly-fire.type", FRIENDLYFIRE_TYPE);
 		FRIENDLYFIRE_WARNONFIGHT = confAdapter.getBoolean("additional.friendly-fire.warn-players-on-fight", FRIENDLYFIRE_WARNONFIGHT);
@@ -76,5 +80,20 @@ public class BukkitConfigParties extends ConfigParties {
 		KILLS_MOB_NEUTRAL = confAdapter.getBoolean("additional.kills.which-save.neutral-mobs", KILLS_MOB_NEUTRAL);
 		KILLS_MOB_HOSTILE = confAdapter.getBoolean("additional.kills.which-save.hostile-mobs", KILLS_MOB_HOSTILE);
 		KILLS_MOB_PLAYERS = confAdapter.getBoolean("additional.kills.which-save.players", KILLS_MOB_PLAYERS);
+	}
+
+	@Override
+	public String getFileName() {
+		return null;
+	}
+
+	@Override
+	public String getResourceName() {
+		return null;
+	}
+
+	@Override
+	public int getLatestVersion() {
+		return 0;
 	}
 }
